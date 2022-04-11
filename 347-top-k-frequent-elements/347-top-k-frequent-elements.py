@@ -1,8 +1,6 @@
 from collections import Counter
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        d = Counter(nums)
-        l = []
-        for i in d.most_common():
-            l.append(i[0])
-        return l[:k]
+        counter = Counter(nums)
+        res = [x[0] for x in counter.most_common(k)]
+        return res
