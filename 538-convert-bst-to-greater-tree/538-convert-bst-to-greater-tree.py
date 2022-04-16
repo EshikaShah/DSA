@@ -5,14 +5,17 @@
 #         self.left = left
 #         self.right = right
 class Solution:    
-    def __init__(self):
-        self.s = 0
     def convertBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if root == None:
-            return 
-        self.convertBST(root.right)
-        self.s += root.val
-        root.val = self.s
-        self.convertBST(root.left)
+        total = 0
+        
+        def traverse(root):
+            nonlocal total
+            if not root:
+                return
+            traverse(root.right)
+            total += root.val
+            root.val = total
+            traverse(root.left)
+        
+        traverse(root)
         return root
-    
