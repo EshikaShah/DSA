@@ -5,15 +5,18 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        stack = []
-        while True:
-            while root:
-                stack.append(root)
-                root=root.left
-            root=stack.pop()
-            k=k-1
-            if k==0:
-                return root.val
-            root=root.right
+        K = k
+        def recur(root):
+            nonlocal K
+            if root==None: 
+                return -1
+            ls = recur(root.left)
+            if ls!=-1: 
+                return ls
+            K-=1
+            if K==0: return root.val
+            return recur(root.right)
+        return recur(root)
             
