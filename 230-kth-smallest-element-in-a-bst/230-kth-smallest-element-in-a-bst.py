@@ -10,12 +10,10 @@ class Solution:
         while True:
             while root:
                 stack.append(root)
-                root = root.left
-            if not stack:
-                return res
-            node = stack.pop()
-            k -= 1
-            if(k==0):
-                return node.val
-            root = node.right
-                
+                root=root.left
+            root=stack.pop()
+            k=k-1
+            if k==0:
+                return root.val
+            root=root.right
+            
